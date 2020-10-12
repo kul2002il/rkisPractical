@@ -1,0 +1,8 @@
+
+git remote add origin https://github.com/kul2002il/practicalDjango.git
+
+git cm -m ""
+git push origin master
+
+
+django-admin startproject newSolo
