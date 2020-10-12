@@ -6,7 +6,7 @@ git push origin master
 
 
 django-admin startproject newSolo
-manage.py startapp имя
+python manage.py startapp имя
 
 python manage.py makemigrations
 
