@@ -9,5 +9,6 @@ django-admin startproject newSolo
 python manage.py startapp имя
 
 python manage.py makemigrations
+python manage.py migrate
 
 manage.py runserver
