@@ -3,6 +3,8 @@ git remote add origin https://github.com/kul2002il/practicalDjango.git
 
 git cm -m ""
 git push origin master
+git log --pretty=format:"%h | %s %d" --graph
+set LESSCHARSET=koi8-r
 
 
 django-admin startproject newSolo
