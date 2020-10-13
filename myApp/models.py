@@ -8,4 +8,5 @@ class Specialty(models.Model):
 
 class User(AbstractUser):
     fio = models.CharField(max_length=50, verbose_name='ФИО', blank=True)
+    role = models.ForeignKey(Specialty, on_delete=models.PROTECT, default=1)
 
