@@ -6,8 +6,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, CreateView
+from django.views.generic.base import TemplateView
 
+from .forms import RegisterUserForm
 from .forms import ChangeUserInfoForm
 from .models import User
 
@@ -50,3 +52,15 @@ class BBPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, PasswordChan
 	template_name = 'main/passwordChange.html'
 	success_url = reverse_lazy('main:profile')
 	success_message = 'Пароль пользователя изменен'
+
+
+class RegisterUserView(CreateView):
+	model = User
+	template_name = 'main/registerUser.html'
+	form_class = RegisterUserForm
+	success_url = reverse_lazy('myApp:register_done')
+
+
+class RegisterDoneView(TemplateView):
+	template_name = 'main/registerDone.html'
+
