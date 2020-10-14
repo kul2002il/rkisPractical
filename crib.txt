@@ -8,6 +8,7 @@ set LESSCHARSET=koi8-r
 
 
 django-admin startproject newSolo
+pip install django-bootstrap4
 python manage.py startapp имя
 
 python manage.py makemigrations

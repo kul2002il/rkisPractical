@@ -16,7 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf import settings
+from django.views.decorators.cache import never_cache
+from django.views.static import serve
+
+
 urlpatterns = [
-    path('articles/', include('myApp.urls')),
+    path('', include('myApp.urls')),
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+   urlpatterns.append(path('static/<path:path>', never_cache(serve)))
