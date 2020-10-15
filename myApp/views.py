@@ -73,12 +73,15 @@ def user_activate(request, sign):
 	except BadSignature:
 		return render(request, 'main/bad_signature.html')
 	user = get_object_or_404(User, username=username)
-	if user.is_activated:
-		template = 'main/userIsActivated.html'
-	else:
-		template = 'main/activationDone.html'
-		user.is_activated = True
-		user.is_active = True
-		user.save()
+	# if user.is_activated:
+	# 	template = 'main/userIsActivated.html'
+	# else:
+	# 	template = 'main/activationDone.html'
+	# 	user.is_activated = True
+	# 	user.is_active = True
+	# 	user.save()
+
+	template = 'main/activationDone.html'
+	user.save()
 	return render(request, template)
 
