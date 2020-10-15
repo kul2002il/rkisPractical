@@ -16,8 +16,8 @@ class ChangeUserInfoForm(forms.ModelForm):
 
 
 class RegisterUserForm(forms.ModelForm):
-	fio = forms.CharField(required=True,
-							label='Отчество')
+	# fio = forms.CharField(required=True, label='Отчество')
+	# email = forms.EmailField(required=True, label='Адрес электронной почты')
 	password1 = forms.CharField(label='Пароль',
 								widget=forms.PasswordInput,
 								help_text=password_validation.password_validators_help_text_html())
@@ -33,13 +33,14 @@ class RegisterUserForm(forms.ModelForm):
 
 	def clean(self):
 		super().clean()
-		password1 = self.cleaned_data['password1']
-		password2 = self.cleaned_data['password2']
-		if password1 and password2 and password1 != password2:
-			errors = {'password2': ValidationError(
-					'Введенные пароли не совпадают', code='password_mismatch'
-			)}
-			raise ValidationError(errors)
+		if self.is_valid():
+			password1 = self.cleaned_data['password1']
+			password2 = self.cleaned_data['password2']
+			if password1 and password2 and password1 != password2:
+				errors = {'password2': ValidationError(
+						'Введенные пароли не совпадают', code='password_mismatch'
+				)}
+				raise ValidationError(errors)
 
 	def save(self, commit=True):
 		user = super().save(commit=False)
@@ -53,5 +54,4 @@ class RegisterUserForm(forms.ModelForm):
 
 	class Meta:
 		model = User
-		fields = ('username', 'email', 'password1', 'password2',
-				'first_name', 'last_name', 'send_messages')
+		fields = ('username', 'email', 'password1', 'password2', 'first_name', 'last_name')
