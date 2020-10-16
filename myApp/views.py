@@ -52,7 +52,7 @@ class ChangeUserInfoView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 class BBPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, PasswordChangeView):
 	template_name = 'main/passwordChange.html'
-	success_url = reverse_lazy('main:profile')
+	success_url = reverse_lazy('myApp:profile')
 	success_message = 'Пароль пользователя изменен'
 
 
