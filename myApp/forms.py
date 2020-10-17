@@ -16,7 +16,9 @@ class ChangeUserInfoForm(forms.ModelForm):
 
 
 class RegisterUserForm(forms.ModelForm):
-	# fio = forms.CharField(required=True, label='Отчество')
+	first_name = forms.CharField(required=True, label='Имя')
+	last_name = forms.CharField(required=True, label='Фамилия')
+	fio = forms.CharField(required=True, label='Отчество')
 	# email = forms.EmailField(required=True, label='Адрес электронной почты')
 	password1 = forms.CharField(label='Пароль',
 								widget=forms.PasswordInput,
@@ -52,4 +54,4 @@ class RegisterUserForm(forms.ModelForm):
 
 	class Meta:
 		model = User
-		fields = ('username', 'email', 'password1', 'password2', 'first_name', 'last_name')
+		fields = ('username', 'password1', 'password2', 'first_name', 'last_name', 'fio')

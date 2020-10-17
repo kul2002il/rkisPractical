@@ -13,11 +13,26 @@ from django.core.signing import BadSignature
 from .utilities import signer
 from .forms import RegisterUserForm
 from .forms import ChangeUserInfoForm
-from .models import User
+from .models import User, Specialty
 
 
 def index(request):
-	return render(request, 'main/index.html')
+	bbs = Specialty.objects.all()
+	# l = []
+	# # for bb in bbs:
+	# # 	l.append(dict(
+	# # 		nameRol = bb.nameRol,
+	# # 		# userSpec = User.objects.filter(pk=bb.userId)[0]
+	# # 		userSpec = bb.userId
+	# # 	))
+	#
+	# l.append(dict(
+	# 	nameRol = "Cpec",
+	# 	# userSpec = User.objects.filter(pk=bb.userId)[0]
+	# 	userSpec = "user"
+	# ))
+	context = {'bbs': bbs}
+	return render(request, 'main/profile.html', context)
 
 
 class BBLoginView(LoginView):
@@ -60,7 +75,7 @@ class RegisterUserView(CreateView):
 	model = User
 	template_name = 'main/registerUser.html'
 	form_class = RegisterUserForm
-	success_url = reverse_lazy('myApp:register_done')
+	success_url = reverse_lazy('myApp:login')
 
 
 class RegisterDoneView(TemplateView):
@@ -85,3 +100,8 @@ def user_activate(request, sign):
 	user.save()
 	return render(request, template)
 
+@login_required
+def specialty(request):
+	bbs = Specialty.objects.filter()
+	context = {'bbs': bbs}
+	return render(request, 'main/profile.html', context)

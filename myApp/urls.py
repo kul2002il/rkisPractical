@@ -16,5 +16,7 @@ urlpatterns = [
     path('accounts/logout/', BBLogoutView.as_view(), name="logout"),
     path('accounts/register/activate/<str:sign>/', user_activate, name='register_activate'),
     path('accounts/register/done/', RegisterDoneView.as_view(), name='register_done'),
+
+    path('specialisty/', views.specialty, name='specialisty'),
 ]
 

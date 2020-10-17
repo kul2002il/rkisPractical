@@ -11,5 +11,17 @@
 	{% else %}
 		<p>Здравствуйте! </p>
 	{% endif %}
-	<h3>Ваши объявления</h3>
+	<h3>Ваши...</h3>
+	{% if bbs %}
+		<ul class="list-unstyled">
+			{% for bb in bbs %}
+			<li class="media my-5 p-3 border">
+				<div class="media-body">
+					<h3><a href="{{ url }}{{ all }}">{{ bb.nameRol }}</a> </h3>
+					<div>{{ bb.userId.last_name }} {{ bb.userId.first_name }} {{ bb.userId.fio }}</div>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
 {% endblock %}
