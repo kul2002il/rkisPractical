@@ -13,7 +13,7 @@ from django.core.signing import BadSignature
 from .utilities import signer
 from .forms import RegisterUserForm
 from .forms import ChangeUserInfoForm
-from .models import User, Specialty
+from .models import User, Specialty, Appointment
 
 
 def index(request):
@@ -105,3 +105,13 @@ def specialty(request):
 	bbs = Specialty.objects.filter()
 	context = {'bbs': bbs}
 	return render(request, 'main/profile.html', context)
+
+
+@login_required
+def userAppointment(request, sign):
+	if not sign:
+		return render(request, 'main/bad_signature.html')
+	specialty = get_object_or_404(Specialty, id=sign)
+	write = Appointment(userId=request.user, docId=specialty)
+	write.save()
+	return render(request, 'main/appointment.html')

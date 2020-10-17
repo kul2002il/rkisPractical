@@ -23,6 +23,10 @@ class Specialty(models.Model):
     nameRol = models.CharField(max_length=50, verbose_name="name", default='')
     userId = models.ForeignKey(User, on_delete=models.PROTECT, default=1)
 
+class Appointment(models.Model):
+    userId = models.ForeignKey(User, on_delete=models.PROTECT, default=1, related_name='mapsUserAppointment')
+    docId = models.ForeignKey(Specialty, on_delete=models.PROTECT, default=1, related_name='mapsDocAppointment')
+
 
 
 

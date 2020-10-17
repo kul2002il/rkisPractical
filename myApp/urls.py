@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from .views import BBLoginView, BBLogoutView, ChangeUserInfoView, BBPasswordChangeView, RegisterUserView,\
-    RegisterDoneView, user_activate
+    RegisterDoneView, user_activate, userAppointment
 
 app_name = 'myApp'
 
@@ -18,5 +18,6 @@ urlpatterns = [
     path('accounts/register/done/', RegisterDoneView.as_view(), name='register_done'),
 
     path('specialisty/', views.specialty, name='specialisty'),
+    path('appointment/<str:sign>/', userAppointment, name='appointmentUser'),
 ]
 
