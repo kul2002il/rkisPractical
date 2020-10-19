@@ -18,30 +18,17 @@ from .models import User, Specialty, Appointment
 
 def index(request):
 	bbs = Specialty.objects.all()
-	# l = []
-	# # for bb in bbs:
-	# # 	l.append(dict(
-	# # 		nameRol = bb.nameRol,
-	# # 		# userSpec = User.objects.filter(pk=bb.userId)[0]
-	# # 		userSpec = bb.userId
-	# # 	))
-	#
-	# l.append(dict(
-	# 	nameRol = "Cpec",
-	# 	# userSpec = User.objects.filter(pk=bb.userId)[0]
-	# 	userSpec = "user"
-	# ))
 	context = {'bbs': bbs}
 	return render(request, 'main/profile.html', context)
-
-
-class BBLoginView(LoginView):
-	template_name = 'main/login.html'
 
 
 @login_required
 def profile(request):
 	return render(request, 'main/profile.html')
+
+
+class BBLoginView(LoginView):
+	template_name = 'main/login.html'
 
 
 class BBLogoutView(LoginRequiredMixin, LogoutView):
